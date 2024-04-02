@@ -20,4 +20,5 @@ from .views import *
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('dashboard/', trips_list, name='trip-list'),
+    path('accounts/logout/', user_logout, name='logout')
 ]

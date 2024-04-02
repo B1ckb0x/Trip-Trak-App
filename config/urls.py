@@ -21,10 +21,14 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+# For user sign up
+from .views import *
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('trip.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/signup/', SignupView.as_view(), name='signup')
 ]
 
 if settings.DEBUG:
