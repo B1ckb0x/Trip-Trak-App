@@ -19,6 +19,13 @@ from .views import *
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
+    path('accounts/logout/', user_logout, name='logout'),
+
     path('dashboard/', trips_list, name='trip-list'),
-    path('accounts/logout/', user_logout, name='logout')
+    path('dashboard/trip/create/', TripCreateView.as_view(), name='trip-create'),
+    path('dashboard/trip/<int:pk>/', TripDetailView.as_view(), name='trip-detail'),
+
+    path('dashboard/note/', NoteListView.as_view(), name='note-list'),
+    path('dashboard/note/<int:pk>/', NoteDetailView.as_view(), name='note-detail'),
+    path('dashboard/note/create/', NoteCreateView.as_view(), name='note-create'),
 ]
