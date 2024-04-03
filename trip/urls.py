@@ -17,10 +17,11 @@ Including another URLconf
 
 from django.urls import path
 
-from .views import HomeView, NoteCreateView, NoteDeleteView, NoteDetailView, NoteListView, NoteUpdateView, TripDeleteView, TripDetailView, TripUpdateView, trips_list, TripCreateView
+from .views import *
 
 urlpatterns = [
     path('', HomeView.as_view(), name="home"),
+    path('accounts/logout/', user_logout, name='logout'),
     path('dashboard/', trips_list, name="trip-list"),
     path('dashboard/trip/create/', TripCreateView.as_view(), name="trip-create"),
     path('dashboard/trip/<int:pk>/', TripDetailView.as_view(), name="trip-detail"),
