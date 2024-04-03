@@ -1,30 +1,40 @@
+{% load tailwind_filters %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-  <!--  Check for errors in the form -->
-  {% if form.errors %}
-  <p> You have entered the wrong username or password. </p>
-  {% endif %}
+    
+    <div class="w-3/4 mx-auto mt-10">
+        <h1 class="text-4xl">Login</h1>
+        <hr class="my-4">
 
-  <!-- Check if the next is called to redirect user to login page -->
-  {% if next %}
-    {% if not user.is_authenticated %}
-      <h1> Please login to view this page </h1>
-    {% else %}
-      <h1> Please login </h1>
-    {% endif %}
-  {% endif %}
-
-  <!-- Display the form -->
-  <form action="{% url 'login' %}" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" name="Login">
-    <input type="hidden" name="next" value="{{ next }}">
-  </form>
+        {% if form.errors %}
+        <p>You have entered an incorrect username or password.</p>
+        {% endif %}
+        
+        {% if next %}
+        {% if not user.is_authenticated %}
+        <h1>Please login to view that page:</h1>
+        {% else %}
+        <h1>Please login:</h1>
+        {% endif %}
+        {% endif %}
+        
+        <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            {{form|crispy}}
+            <input class="px-7 py-2 bg-green-400 hover:cursor-pointer hover:bg-green-300 rounded" type="submit" value="Login">
+            <input type="hidden" name="next" value={{next}}>
+        </form>
+        <p class="mt-4">
+            <a class="block border-t pt-4 underline text-blue-500" href="{% url 'signup' %}">No account? Register here.</a>
+        </p>
+    </div>
 </body>
 </html>
