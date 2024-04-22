@@ -3,6 +3,8 @@
 
 {% block content %}
 <h1 class="text-4xl underline underline-offset-4 mb-8">Trip Form</h1>
+<p> Date is in the format of Year-Month-Date i.e 2024-11-23</p>
+<br />
 <form action="" method="POST">
     {% csrf_token %}
     {{form|crispy}}
